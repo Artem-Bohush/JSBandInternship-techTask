@@ -1,0 +1,27 @@
+.fade {
+  animation-name: fade;
+  animation-duration: 0.3s;
+}
+
+.appear {
+  animation-name: appear;
+  animation-duration: 0.3s;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

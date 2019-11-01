@@ -1,0 +1,108 @@
+@media all and (max-width: 1199px) {
+  .content-block {
+    .main-content {
+      .interaction-tools {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .cards-field {
+        grid-template-columns: 250px 250px 250px;
+        grid-column-gap: 40px;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 991px) {
+  .content-block {
+    .main-content {
+      .interaction-tools {
+        .search-from {
+          width: 220px;
+        }
+        .custom-select {
+          width: 150px;
+        }
+        .btn.btn-success {
+          width: 120px;
+        }
+      }
+      .cards-field {
+        grid-template-columns: 250px 250px;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 767px) {
+  .content-block {
+    .main-content {
+      .interaction-tools {
+        flex-wrap: wrap;
+        .search-from {
+          width: 260px;
+          order: 3;
+          margin-top: 10px;
+          margin-left: -15px;
+        }
+        .custom-select {
+          width: 260px;
+          &:nth-of-type(1) {
+            order: 1;
+            margin-left: -15px;
+          }
+          &:nth-of-type(2) {
+            order: 2;
+            margin-right: -15px;
+          }
+        }
+        .btn.btn-success {
+          width: 260px;
+          order: 4;
+          margin-top: 10px;
+          margin-right: -15px;
+        }
+      }
+      .cards-field {
+        padding-top: 50px;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 575px) {
+  .content-block {
+    .main-content {
+      .interaction-tools {
+        flex-direction: column;
+        .search-from {
+          width: 100%;
+          order: 3;
+          margin-left: 0;
+        }
+        .custom-select {
+          width: 100%;
+          margin-top: 8px;
+          &:nth-of-type(1) {
+            order: 1;
+            margin-left: 0;
+          }
+          &:nth-of-type(2) {
+            order: 2;
+            margin-right: 0;
+          }
+        }
+        .btn.btn-success {
+          order: 4;
+          width: 100%;
+          margin-top: 10px;
+          margin-right: 0;
+        }
+      }
+      .cards-field {
+        grid-template-columns: 250px;
+        grid-column-gap: 0;
+      }
+    }
+  }
+}

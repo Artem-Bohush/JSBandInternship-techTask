@@ -1,0 +1,15 @@
+$headerColor: #bbcde0;
+$taskCardColor: linear-gradient(0deg, #fffa91 0%, #fffa91 1%, #fcf8b8 99%, #fcf8b8 100%);
+$cardsFieldColor: #d3e0ec;
+
+$lowStatusColor: radial-gradient(ellipse at center, #28a745 0%, #28a745 1%, #00ff51 100%);
+$normalStatusColor: radial-gradient(
+  ellipse at center,
+  #ff8133 0%,
+  #ff8133 1%,
+  #ffd505 99%,
+  #ffd505 100%
+);
+$highStatusColor: radial-gradient(ellipse at center, #ff1a05 0%, #ff8363 100%);
+
+$optionsBtnColor: radial-gradient(ellipse at center, #d9d9d9 0%, #d9d9d9 1%, #f7f7f7 100%);
