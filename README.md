@@ -24,14 +24,32 @@ the database (in this case, local storage is used), immediately extract just wri
 and render the corresponding changes to the user. Yes, it sounds like work with component state change 
 and subsequent rerendering)
   So, with regard to the code: 
-  - first, a function was written to extract data from local storage
+  - first written a function for retrieving data:
 ```
 const tasksRetriever = function getAllTasks() {
-  const tasks = localStorage.getItem('allTasks');
-  if (tasks !== null && tasks !== undefined) {
-    return JSON.parse(tasks);
-  }
-  return null;
+  // some code...
+};
+```
+- next there is the function for writing data:
+```
+const taskWriter = function setAllTasks(tasks) {
+  // some code...
+};
+```
+- then we have a function for rendering data:
+```
+const tasksDrawer = function showAllTasks() {
+const currentTasks = tasksRetriever();
+    // some code...
+};
+```
+as you can see this function use previous one for retrieving data, and then call the next one for creating a string of html code
+- html code generator function:
+```
+const newTaskCardHtml = function createHtml(task) {
+  return `
+    // html code
+  `;
 };
 ```
 
