@@ -24,7 +24,7 @@ the database (in this case, local storage is used), immediately extract just wri
 and render the corresponding changes to the user. Yes, it sounds like work with component state change 
 and subsequent rerendering)
   So, with regard to the code: 
-  > **Note:**
+  > **:**
   - first, a function was written to extract data from local storage
 
 ## Support
