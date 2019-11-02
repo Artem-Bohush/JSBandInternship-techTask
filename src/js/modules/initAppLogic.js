@@ -136,6 +136,8 @@ function initAppLogic() {
       document.querySelector('#task-priority').value = 'high';
       setTimeout(() => {
         document.querySelector('.overlay').style.display = 'none';
+        document.querySelector('.title-required').style.display = 'none';
+        document.querySelector('#task-title').style.border = '1px solid #CED4DA';
         document.querySelector('.overlay').classList.remove('fade');
       }, 300);
     }
@@ -153,31 +155,47 @@ function initAppLogic() {
     formToggle(false);
   });
 
+  const titleInput = document.querySelector('#task-title');
+  titleInput.addEventListener('input', () => {
+    document.querySelector('.title-required').style.display = 'none';
+    document.querySelector('#task-title').style.border = '1px solid #80BDFF';
+  });
+
+  titleInput.addEventListener('blur', () => {
+    document.querySelector('#task-title').style.border = '1px solid #CED4DA';
+  });
+
   const saveTaskBtn = document.querySelector('#saveTask');
   saveTaskBtn.addEventListener('click', e => {
     e.preventDefault();
-    const form = document.querySelector('#taskData');
-    const formData = new FormData(form);
-    const newTask = {
-      id: counter,
-      status: 'open',
-    };
-    counter += 1;
-    localStorage.setItem('counter', counter);
-    formData.forEach((value, key) => {
-      newTask[key] = value;
-    });
-    const currentTasks = tasksRetriever();
-    if (currentTasks !== null) {
-      currentTasks.unshift(newTask);
-      taskWriter(currentTasks);
+    const taskTitleInput = document.querySelector('#task-title');
+    if (taskTitleInput.value !== '') {
+      const form = document.querySelector('#taskData');
+      const formData = new FormData(form);
+      const newTask = {
+        id: counter,
+        status: 'open',
+      };
+      counter += 1;
+      localStorage.setItem('counter', counter);
+      formData.forEach((value, key) => {
+        newTask[key] = value;
+      });
+      const currentTasks = tasksRetriever();
+      if (currentTasks !== null) {
+        currentTasks.unshift(newTask);
+        taskWriter(currentTasks);
+      } else {
+        const newTaskList = [];
+        newTaskList.push(newTask);
+        taskWriter(newTaskList);
+      }
+      formToggle(false);
+      tasksDrawer();
     } else {
-      const newTaskList = [];
-      newTaskList.push(newTask);
-      taskWriter(newTaskList);
+      document.querySelector('.title-required').style.display = 'block';
+      taskTitleInput.style.border = '1px solid #FF2525';
     }
-    formToggle(false);
-    tasksDrawer();
   });
 
   let toEditTaskId = '';
@@ -226,22 +244,28 @@ function initAppLogic() {
   const editTaskBtn = document.querySelector('#editTask');
   editTaskBtn.addEventListener('click', e => {
     e.preventDefault();
-    const form = document.querySelector('#taskData');
-    const formData = new FormData(form);
-    const editedTaskData = {};
-    formData.forEach((value, key) => {
-      editedTaskData[key] = value;
-    });
-    const currentTasks = tasksRetriever();
-    const toEdit = currentTasks.find(t => t.id === Number(toEditTaskId));
-    const toEditIndex = currentTasks.indexOf(toEdit);
-    toEdit.title = editedTaskData.title;
-    toEdit.description = editedTaskData.description;
-    toEdit.priority = editedTaskData.priority;
-    currentTasks[toEditIndex] = toEdit;
-    taskWriter(currentTasks);
-    formToggle(false);
-    tasksDrawer();
+    const taskTitleInput = document.querySelector('#task-title');
+    if (taskTitleInput.value !== '') {
+      const form = document.querySelector('#taskData');
+      const formData = new FormData(form);
+      const editedTaskData = {};
+      formData.forEach((value, key) => {
+        editedTaskData[key] = value;
+      });
+      const currentTasks = tasksRetriever();
+      const toEdit = currentTasks.find(t => t.id === Number(toEditTaskId));
+      const toEditIndex = currentTasks.indexOf(toEdit);
+      toEdit.title = editedTaskData.title;
+      toEdit.description = editedTaskData.description;
+      toEdit.priority = editedTaskData.priority;
+      currentTasks[toEditIndex] = toEdit;
+      taskWriter(currentTasks);
+      formToggle(false);
+      tasksDrawer();
+    } else {
+      document.querySelector('.title-required').style.display = 'block';
+      taskTitleInput.style.border = '1px solid #FF2525';
+    }
   });
 }
 
