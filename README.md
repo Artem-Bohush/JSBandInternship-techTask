@@ -39,8 +39,9 @@ const taskWriter = function setAllTasks(tasks) {
 - then we have a function for rendering data:
 ```
 const tasksDrawer = function showAllTasks() {
-const currentTasks = tasksRetriever();
-    // some code...
+  const currentTasks = tasksRetriever();
+  // some code...
+  const template = accordingToFiltersAndTitle.map(task => newTaskCardHtml(task));
 };
 ```
 As you can see this function use previous one for retrieving data, and then call the next one for creating a string of html code.
