@@ -65,6 +65,13 @@ let counter = 0;
   }
 })();
 ```
+- there is also a function to open and close the data entry form of the task:
+```
+const formToggle = function hideTaskDataForm(show) {
+  // some simple logic
+};
+```
+- then we have event handlers with uncomplicated logic that call one or another function at a certain moment.
 
 ## Support
   If you have any questions, please drop me a line at art.bohush@gmail.com
