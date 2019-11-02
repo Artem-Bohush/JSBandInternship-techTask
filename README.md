@@ -23,6 +23,8 @@ following sentence - to get data from the form, make some conversions(if neeeded
 the database (in this case, local storage is used), immediately extract just written/overwritten data 
 and render the corresponding changes to the user. Yes, it sounds like work with component state change 
 and subsequent rerendering)
+  So, with regard to the code: 
+  - first, a function was written to extract data from local storage
 
 ## Support
   If you have any questions, please drop me a line at art.bohush@gmail.com
