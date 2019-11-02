@@ -1,9 +1,9 @@
 # TODOList App
 
-This is an application that will help you make a list of tasks and monitor their progress.
+  This is an application that will help you make a list of tasks and monitor their progress.
 
 ## Description
-The application allows you to create case records with the heading, a brief description and priority of 
+  The application allows you to create case records with the heading, a brief description and priority of 
 execution (high, normal and low). After creation, a new record is placed at the beginning of the queue, 
 shifting the already created ones. You can easily change any parameters of an already created record, as
 well as mark the recording as “done” after completing the task. All "done" tasks are transferred to the 
@@ -14,10 +14,10 @@ retrospective :)
 
 ## Installation
 
-This is a web application, so installation is not required. Just follow the link [TODOList](https://artem-bohush.github.io/toDoList/).
+  This is a web application, so installation is not required. Just follow the link [TODOList](https://artem-bohush.github.io/toDoList/).
 
 ## Usage
-If you have a desire to add some kind of functionality, you should understand the already written 
+  If you have a desire to add some kind of functionality, you should understand the already written 
 application logic in the src/js/modules/initAppLogic.js file. All application logic is described by the 
 following sentence - to get data from the form, make some conversions(if neeeded), write/overwrite to 
 the database (in this case, local storage is used), immediately extract just written/overwritten data 
@@ -25,4 +25,4 @@ and render the corresponding changes to the user. Yes, it sounds like work with 
 and subsequent rerendering)
 
 ## Support
-If you have any questions, please drop me a line at art.bohush@gmail.com
+  If you have any questions, please drop me a line at art.bohush@gmail.com
