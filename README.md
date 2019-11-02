@@ -64,8 +64,8 @@ let counter = 0;
     localStorage.setItem('counter', counter);
   }
 })();
-By the way, as for the id - we assign a unique id to each task and, when generating the html code, we assign it to the corresponding element on the page. When a click is made on one of the options (done, edit, delete), we determine the id of the current element and can find the corresponding object in the database.
 ```
+By the way, as for the id - we assign a unique id to each task and, when generating the html code, we assign it to the corresponding element on the page. When a click is made on one of the options (done, edit, delete), we determine the id of the current element and can find the corresponding object in the database.
 - there is also a function to open and close the data entry form of the task:
 ```
 const formToggle = function hideTaskDataForm(show) {
