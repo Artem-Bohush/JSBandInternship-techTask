@@ -26,8 +26,13 @@ and subsequent rerendering)
   So, with regard to the code: 
   - first, a function was written to extract data from local storage
 ```
-// Foo
-var bar = 0;
+const tasksRetriever = function getAllTasks() {
+  const tasks = localStorage.getItem('allTasks');
+  if (tasks !== null && tasks !== undefined) {
+    return JSON.parse(tasks);
+  }
+  return null;
+};
 ```
 
 ## Support
