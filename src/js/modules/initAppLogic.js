@@ -122,8 +122,8 @@ function initAppLogic() {
     tasksDrawer();
   });
 
-  const formToggle = function hideTaskDataForm(status) {
-    if (status === true) {
+  const formToggle = function hideTaskDataForm(show) {
+    if (show === true) {
       document.querySelector('.overlay').classList.add('appear');
       document.querySelector('.overlay').style.display = 'block';
       setTimeout(() => {

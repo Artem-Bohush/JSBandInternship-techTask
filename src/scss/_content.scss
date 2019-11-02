@@ -1,6 +1,7 @@
 .main-content {
   position: relative;
   padding-bottom: 90px;
+  z-index: -1;
   .interaction-tools {
     min-height: 100px;
     padding: 20px 20px 0 20px;
