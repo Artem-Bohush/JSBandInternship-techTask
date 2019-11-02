@@ -30,7 +30,7 @@ const tasksRetriever = function getAllTasks() {
   // some code...
 };
 ```
-- next there is the function for writing data:
+- next there is a function for writing data:
 ```
 const taskWriter = function setAllTasks(tasks) {
   // some code...
@@ -43,7 +43,7 @@ const currentTasks = tasksRetriever();
     // some code...
 };
 ```
-as you can see this function use previous one for retrieving data, and then call the next one for creating a string of html code
+as you can see this function use previous one for retrieving data, and then call the next one for creating a string of html code.
 - html code generator function:
 ```
 const newTaskCardHtml = function createHtml(task) {
@@ -51,6 +51,19 @@ const newTaskCardHtml = function createHtml(task) {
     // html code
   `;
 };
+```
+- this immediately invoked function does the first rendering after opening a page and set id counter value:
+```
+let counter = 0;
+(() => {
+  tasksDrawer();
+  const currentCounter = localStorage.getItem('counter');
+  if (currentCounter) {
+    counter = Number(currentCounter);
+  } else {
+    localStorage.setItem('counter', counter);
+  }
+})();
 ```
 
 ## Support
