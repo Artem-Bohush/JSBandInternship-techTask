@@ -9,6 +9,7 @@ body {
   background-color: $cardsFieldColor;
   .content-block {
     min-height: 100vh;
+    z-index: 1;
   }
 }
 
