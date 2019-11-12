@@ -3,7 +3,7 @@
   This is an application that will help you make a list of tasks and monitor their progress.
 
 ## Description
-  The application allows you to create case records with the heading, a brief description and priority of 
+  The application allows you to create task records with the heading, a brief description and priority of 
 execution (high, normal and low). After creation, a new record is placed at the beginning of the queue, 
 shifting the already created ones. You can easily change any parameters of an already created record, as
 well as mark the recording as “done” after completing the task. All "done" tasks are transferred to the 
@@ -39,8 +39,9 @@ const taskWriter = function setAllTasks(tasks) {
 - then we have a function for rendering data:
 ```
 const tasksDrawer = function showAllTasks() {
-const currentTasks = tasksRetriever();
-    // some code...
+  const currentTasks = tasksRetriever();
+  // some code...
+  const template = accordingToFiltersAndTitle.map(task => newTaskCardHtml(task));
 };
 ```
 As you can see this function use previous one for retrieving data, and then call the next one for creating a string of html code.
@@ -65,7 +66,7 @@ let counter = 0;
   }
 })();
 ```
-By the way, as for the id - we assign a unique id to each task and, when generating the html code, we assign it to the corresponding element on the page. When a click is made on one of the options (done, edit, delete), we determine the id of the current element and can find the corresponding object in the database.
+By the way, as for the id - we assign a unique id to each task and, when generating the html code, we assign it to the corresponding element on the page. When a click is made on one of the options (done, edit, delete), we determine the id of the current element and then find the corresponding object in the database.
 - there is also a function to open and close the data entry form of the task:
 ```
 const formToggle = function hideTaskDataForm(show) {
