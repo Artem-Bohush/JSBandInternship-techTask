@@ -1,5 +1,5 @@
 function initAppLogic() {
-  const tasksRetriever = function getAllTasks() {
+  const retrieveTasks = function getAllTasks() {
     const tasks = localStorage.getItem('allTasks');
     if (tasks !== null && tasks !== undefined) {
       return JSON.parse(tasks);
@@ -7,7 +7,7 @@ function initAppLogic() {
     return null;
   };
 
-  const taskWriter = function setAllTasks(tasks) {
+  const writeTasks = function setAllTasks(tasks) {
     const serialAllTasks = JSON.stringify(tasks);
     try {
       localStorage.setItem('allTasks', serialAllTasks);
@@ -28,7 +28,7 @@ function initAppLogic() {
     return 'status-low';
   };
 
-  const newTaskCardHtml = function createHtml(task) {
+  const generateHTMLCode = function createHtml(task) {
     return `
       <div class="task-card ${task.status === 'done' ? 'done' : ''}">
         <div class="task-card-top-group">
@@ -56,8 +56,8 @@ function initAppLogic() {
     `;
   };
 
-  const tasksDrawer = function showAllTasks() {
-    const currentTasks = tasksRetriever();
+  const drawTasks = function showAllTasks() {
+    const currentTasks = retrieveTasks();
     if (currentTasks !== null) {
       const neededStatus = document.querySelector('#statusSelect').value;
       const neededPriority = document.querySelector('#prioritySelect').value;
@@ -90,7 +90,7 @@ function initAppLogic() {
           }
         });
       }
-      const template = accordingToFiltersAndTitle.map(task => newTaskCardHtml(task));
+      const template = accordingToFiltersAndTitle.map(task => generateHTMLCode(task));
       const html = template.join(' ');
       document.querySelector('.cards-field').innerHTML = html;
     }
@@ -98,7 +98,7 @@ function initAppLogic() {
 
   let counter = 0;
   (() => {
-    tasksDrawer();
+    drawTasks();
     const currentCounter = localStorage.getItem('counter');
     if (currentCounter) {
       counter = Number(currentCounter);
@@ -109,20 +109,20 @@ function initAppLogic() {
 
   const statusSelect = document.querySelector('#statusSelect');
   statusSelect.addEventListener('change', () => {
-    tasksDrawer();
+    drawTasks();
   });
 
   const prioritySelect = document.querySelector('#prioritySelect');
   prioritySelect.addEventListener('change', () => {
-    tasksDrawer();
+    drawTasks();
   });
 
   const titleSearch = document.querySelector('#titleSearch');
   titleSearch.addEventListener('input', () => {
-    tasksDrawer();
+    drawTasks();
   });
 
-  const formToggle = function hideTaskDataForm(show) {
+  const toggleForm = function hideTaskDataForm(show) {
     if (show === true) {
       document.querySelector('.overlay').classList.add('appear');
       document.querySelector('.overlay').style.display = 'block';
@@ -145,14 +145,14 @@ function initAppLogic() {
 
   const createTaskBtn = document.querySelector('#createTask');
   createTaskBtn.addEventListener('click', () => {
-    formToggle(true);
+    toggleForm(true);
     document.querySelector('#editTask').style.display = 'none';
     document.querySelector('#saveTask').style.display = 'block';
   });
 
   const cancelAddingTaskBtn = document.querySelector('#cancelAddingTask');
   cancelAddingTaskBtn.addEventListener('click', () => {
-    formToggle(false);
+    toggleForm(false);
   });
 
   const titleInput = document.querySelector('#task-title');
@@ -181,17 +181,17 @@ function initAppLogic() {
       formData.forEach((value, key) => {
         newTask[key] = value;
       });
-      const currentTasks = tasksRetriever();
+      const currentTasks = retrieveTasks();
       if (currentTasks !== null) {
         currentTasks.unshift(newTask);
-        taskWriter(currentTasks);
+        writeTasks(currentTasks);
       } else {
         const newTaskList = [];
         newTaskList.push(newTask);
-        taskWriter(newTaskList);
+        writeTasks(newTaskList);
       }
-      formToggle(false);
-      tasksDrawer();
+      toggleForm(false);
+      drawTasks();
     } else {
       document.querySelector('.title-required').style.display = 'block';
       taskTitleInput.style.border = '1px solid #FF2525';
@@ -204,7 +204,7 @@ function initAppLogic() {
     const { target } = e;
     if (target.getAttribute('id') === 'done') {
       const taskId = target.parentElement.getAttribute('id');
-      const currentTasks = tasksRetriever();
+      const currentTasks = retrieveTasks();
       currentTasks.find(t => t.id === Number(taskId)).status = 'done';
       for (let i = 0; i < currentTasks.length; i += 1) {
         if (
@@ -217,14 +217,14 @@ function initAppLogic() {
           currentTasks[i + 1] = temp;
         }
       }
-      taskWriter(currentTasks);
-      tasksDrawer();
+      writeTasks(currentTasks);
+      drawTasks();
     } else if (target.getAttribute('id') === 'edit') {
       const taskId = target.parentElement.getAttribute('id');
       toEditTaskId = taskId;
-      const currentTasks = tasksRetriever();
+      const currentTasks = retrieveTasks();
       const toEdit = currentTasks.find(t => t.id === Number(taskId));
-      formToggle(true);
+      toggleForm(true);
       document.querySelector('#task-title').value = toEdit.title;
       document.querySelector('#task-description').value = toEdit.description;
       document.querySelector('#task-priority').value = toEdit.priority;
@@ -232,12 +232,12 @@ function initAppLogic() {
       document.querySelector('#editTask').style.display = 'block';
     } else if (target.getAttribute('id') === 'delete') {
       const taskId = target.parentElement.getAttribute('id');
-      const currentTasks = tasksRetriever();
+      const currentTasks = retrieveTasks();
       const toDelete = currentTasks.find(t => t.id === Number(taskId));
       const toDeleteIndex = currentTasks.indexOf(toDelete);
       currentTasks.splice(toDeleteIndex, 1);
-      taskWriter(currentTasks);
-      tasksDrawer();
+      writeTasks(currentTasks);
+      drawTasks();
     }
   });
 
@@ -252,16 +252,16 @@ function initAppLogic() {
       formData.forEach((value, key) => {
         editedTaskData[key] = value;
       });
-      const currentTasks = tasksRetriever();
+      const currentTasks = retrieveTasks();
       const toEdit = currentTasks.find(t => t.id === Number(toEditTaskId));
       const toEditIndex = currentTasks.indexOf(toEdit);
       toEdit.title = editedTaskData.title;
       toEdit.description = editedTaskData.description;
       toEdit.priority = editedTaskData.priority;
       currentTasks[toEditIndex] = toEdit;
-      taskWriter(currentTasks);
-      formToggle(false);
-      tasksDrawer();
+      writeTasks(currentTasks);
+      toggleForm(false);
+      drawTasks();
     } else {
       document.querySelector('.title-required').style.display = 'block';
       taskTitleInput.style.border = '1px solid #FF2525';
