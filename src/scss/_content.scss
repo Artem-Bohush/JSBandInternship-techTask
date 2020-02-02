@@ -1,7 +1,6 @@
 .main-content {
   position: relative;
-  padding-bottom: 90px;
-  z-index: 1;
+  padding-bottom: 30px;
   .interaction-tools {
     min-height: 100px;
     padding: 20px 20px 0 20px;
@@ -22,17 +21,17 @@
         padding-left: 40px;
         font-style: italic;
         border-radius: 0;
-        box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.75);
       }
     }
     .custom-select {
       width: 220px;
       border-radius: 0;
-      box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
+      box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.75);
     }
     .btn.btn-success {
       width: 150px;
-      box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
+      box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.75);
     }
   }
   .cards-field {
@@ -114,10 +113,10 @@
     .done {
       position: relative;
       &::after {
-        content: '';
+        content: "";
         width: 25px;
         height: 25px;
-        background-image: url('../img/svg/checked.svg');
+        background-image: url("../img/svg/checked.svg");
         background-size: contain;
         position: absolute;
         right: 0px;
@@ -125,7 +124,7 @@
         z-index: 3;
       }
       &::before {
-        content: '';
+        content: "";
         width: 250px;
         height: 250px;
         background: rgba(0, 0, 0, 0.7);
@@ -189,7 +188,7 @@
             font-size: 14px;
             margin-top: 3px;
             font-weight: 400;
-            color: #FF2525;
+            color: #ff2525;
           }
           .custom-select {
             &:focus {

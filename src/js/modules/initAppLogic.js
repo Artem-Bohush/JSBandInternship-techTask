@@ -1,13 +1,13 @@
 function initAppLogic() {
-  const retrieveTasks = function getAllTasks() {
+  function retrieveTasks() {
     const tasks = localStorage.getItem('allTasks');
     if (tasks !== null && tasks !== undefined) {
       return JSON.parse(tasks);
     }
     return null;
-  };
+  }
 
-  const writeTasks = function setAllTasks(tasks) {
+  function writeTasks(tasks) {
     const serialAllTasks = JSON.stringify(tasks);
     try {
       localStorage.setItem('allTasks', serialAllTasks);
@@ -16,9 +16,9 @@ function initAppLogic() {
         'An error occurred while trying to save data :( Local storage is not available or data storage limit exceeded.'
       );
     }
-  };
+  }
 
-  const determineRightClass = function checkPriority(task) {
+  function determineRightClass(task) {
     if (task.priority === 'high') {
       return 'status-high';
     }
@@ -26,9 +26,9 @@ function initAppLogic() {
       return 'status-normal';
     }
     return 'status-low';
-  };
+  }
 
-  const generateHTMLCode = function createHtml(task) {
+  function generateHTMLCode(task) {
     return `
       <div class="task-card ${task.status === 'done' ? 'done' : ''}">
         <div class="task-card-top-group">
@@ -54,9 +54,9 @@ function initAppLogic() {
         </div>
       </div>
     `;
-  };
+  }
 
-  const drawTasks = function showAllTasks() {
+  function drawTasks() {
     const currentTasks = retrieveTasks();
     if (currentTasks !== null) {
       const neededStatus = document.querySelector('#statusSelect').value;
@@ -94,7 +94,7 @@ function initAppLogic() {
       const html = template.join(' ');
       document.querySelector('.cards-field').innerHTML = html;
     }
-  };
+  }
 
   let counter = 0;
   (() => {
@@ -122,7 +122,7 @@ function initAppLogic() {
     drawTasks();
   });
 
-  const toggleForm = function hideTaskDataForm(show) {
+  function toggleForm(show) {
     if (show === true) {
       document.querySelector('.overlay').classList.add('appear');
       document.querySelector('.overlay').style.display = 'block';
@@ -141,7 +141,7 @@ function initAppLogic() {
         document.querySelector('.overlay').classList.remove('fade');
       }, 300);
     }
-  };
+  }
 
   const createTaskBtn = document.querySelector('#createTask');
   createTaskBtn.addEventListener('click', () => {

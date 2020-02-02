@@ -1,10 +1,9 @@
 footer {
-  height: 50px;
+  min-height: 50px;
   border-top: 1px solid #bbcde0;
   font-size: 15px;
+  margin-top: auto;
   padding-top: 12px;
-  margin-top: -50px;
-  z-index: 2;
   .author {
     display: block;
     padding-left: 20px;
